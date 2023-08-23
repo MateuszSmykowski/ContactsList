@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 
 namespace ContactsList.Data
 {
+    //class that connects application with database, it sets the tables in database based on models
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
         public DbSet<Contact> Contacts { get; set; }
