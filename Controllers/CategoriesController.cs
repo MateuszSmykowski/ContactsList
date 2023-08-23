@@ -1,6 +1,8 @@
 ﻿
 using ContactList.Models;
+using ContactsList.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactsList.Controllers
 {
@@ -8,14 +10,20 @@ namespace ContactsList.Controllers
     [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
     {
-        //[HttpGet]
-        //public IEnumerable<Contact> Get()
-        //{
-        //    return _context
-        //        .Contacts
-        //        .Include(c => c.Category)
-        //        .Include(c => c.Subcategory)
-        //        .ToList();
-        //}
+        private readonly ApplicationDbContext _context;
+
+        public CategoriesController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        //method returns list of categories
+        [HttpGet]
+        public IEnumerable<Category> Get()
+        {
+            return _context
+                .Categories
+                .ToList();
+        }
     }
 }

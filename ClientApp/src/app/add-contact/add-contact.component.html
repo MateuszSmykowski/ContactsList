@@ -1,1 +1,106 @@
-<p>add-contact works!</p>
+<h3>{{ title }} contact</h3>
+
+<form (ngSubmit)="save()" [formGroup]="contactForm">
+  <div>
+    <label>First Name:</label>
+    <br />
+    <input type="text" id="firstName" formControlName="firstName">
+  </div>
+  <div *ngIf="firstName!.invalid && (firstName!.dirty || firstName!.touched)"
+       class="alert alert-danger">
+    <div *ngIf="firstName!.errors!.required">
+      First name is require!
+    </div>
+    <div *ngIf="firstName!.errors!.minlength">
+      First name must be longer than 2 letters!
+    </div>
+  </div>
+
+  <div>
+    <label>Last Name:</label>
+    <br />
+    <input type="text" id="lastName" formControlName="lastName">
+  </div>
+  <div *ngIf="lastName!.invalid && (lastName!.dirty || lastName!.touched)"
+       class="alert alert-danger">
+    <div *ngIf="lastName!.errors!.required">
+      Last name is require!
+    </div>
+    <div *ngIf="lastName!.errors!.minlength">
+      Last name must be longer than 2 letters!
+    </div>
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <br />
+    <input type="email" id="email" formControlName="email">
+  </div>
+  <div *ngIf="email!.invalid && (email!.dirty || email!.touched)"
+       class="alert alert-danger">
+    <div *ngIf="email!.errors!.required">
+      Email is required!
+    </div>
+    <div *ngIf="email!.errors!.email">
+      Wrong email format!
+    </div>
+  </div>
+
+  <div>
+    <label>Category:</label>
+    <br />
+    <select formControlName="category" (change)="categoryChange()">
+      <option value="">Select a category</option>
+      <option *ngFor="let category of categories" [ngValue]="category">
+        {{category.categoryName}}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label>Subcategory:</label>
+    <br />
+    <select formControlName="subcategory">
+      <option value="">Select a subcategory</option>
+      <option *ngFor="let subcategory of currentCategorySubcategories" [ngValue]="subcategory">
+        {{subcategory.subcategoryName}}
+      </option>
+    </select>
+    <div *ngIf="addNewSubcategory">
+      <label>Add new subcategory</label>
+      <br />
+      <input [(ngModel)]="newSubcategoryName" [ngModelOptions]="{standalone: true}" type="text">
+      <button type="button" (click)="addSubcategory()">Add</button>
+    </div>
+  </div>
+
+  <div>
+    <label>Phone Number:</label>
+    <br />
+    <input type="text" id="phoneNumber" formControlName="phoneNumber">
+  </div>
+  <div *ngIf="phoneNumber!.invalid && (phoneNumber!.dirty || phoneNumber!.touched)"
+       class="alert alert-danger">
+    <div *ngIf="phoneNumber!.errors!.pattern">
+      Phone number must have 9 digits!
+    </div>
+  </div>
+
+  <div>
+    <label>Date of Birth:</label>
+    <br />
+    <input type="text" id="dateOfBirth" formControlName="dateOfBirth">
+  </div>
+  <div *ngIf="dateOfBirth!.invalid && (dateOfBirth!.dirty || dateOfBirth!.touched)"
+       class="alert alert-danger">
+    <div *ngIf="dateOfBirth!.errors!.pattern">
+      Date must be in YYYY-MM-DD format!
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" style="margin-top: 10px">Add Contact</button>
+  </div>
+
+</form>
+

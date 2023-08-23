@@ -1,2 +1,49 @@
-<p>contacts works!</p>
-<div>{{data | json}}</div>
+<p>Contacts list</p>
+<button [routerLink]="['/contacts/add']" *ngIf="isAuthenticated | async">Add new contact</button>
+<br />
+
+<div class="contactDiv" *ngFor="let contact of contactsData">
+  <div class="expandableDiv" (click)="toggleExpand(contact)">
+    <div style="margin-left: 5px">{{ contact.firstName }} {{ contact.lastName }}</div>
+    <div class="buttonsDiv">
+      <div *ngIf="isAuthenticated | async">
+        <button [routerLink]="['/contacts/edit/', contact.id]">Edit</button>
+      </div>
+      <div *ngIf="isAuthenticated | async">
+        <button (click)="delete(contact.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <table *ngIf="expanded.get(contact)">
+      <tr>
+        <th>First name</th>
+        <td>{{contact.firstName}}</td>
+      </tr>
+      <tr>
+        <th>Last name</th>
+        <td>{{contact.lastName}}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{contact.email}}</td>
+      </tr>
+      <tr>
+        <th>Category</th>
+        <td>{{contact.category.categoryName}}</td>
+      </tr>
+      <tr>
+        <th>Subcategory</th>
+        <td>{{contact.subcategory.subcategoryName}}</td>
+      </tr>
+      <tr>
+        <th>Phone number</th>
+        <td>{{contact.phoneNumber}}</td>
+      </tr>
+      <tr>
+        <th>Date of birth</th>
+        <td>{{contact.dateOfBirth}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

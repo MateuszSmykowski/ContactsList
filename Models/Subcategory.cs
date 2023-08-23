@@ -7,9 +7,9 @@ namespace ContactList.Models
         [Key]
         public int Id { get; set; }
 
-        public string SubcategoryName { get; set; }
+        public string? SubcategoryName { get; set; }
 
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public int CategoryId { get; set; }
     }

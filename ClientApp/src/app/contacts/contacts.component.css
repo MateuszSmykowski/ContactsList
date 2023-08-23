@@ -1,0 +1,16 @@
+.contactDiv {
+  border-style: inset;
+  border-width: 1px;
+  margin: 10px;
+}
+
+.expandableDiv {
+  display: flex;
+  justify-content: space-between;
+  border-style: outset;
+  border-width: 2px;
+}
+
+.buttonsDiv {
+  display: flex;
+}
