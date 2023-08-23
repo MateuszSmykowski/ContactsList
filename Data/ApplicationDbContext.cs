@@ -19,5 +19,21 @@ namespace ContactsList.Data
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            var rng = new Random();
+
+            var categories = new[]
+            {
+                new { Id = 1, CategoryName = "Business" },
+                new { Id = 2, CategoryName = "Private" },
+                new { Id = 3, CategoryName = "Other" }
+            };
+
+            modelBuilder.Entity<Category>().HasData(categories);
+        }
     }
 }

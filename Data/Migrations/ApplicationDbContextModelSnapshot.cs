@@ -37,6 +37,23 @@ namespace ContactsList.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryName = "Business"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryName = "Private"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryName = "Other"
+                        });
                 });
 
             modelBuilder.Entity("ContactList.Models.Contact", b =>
@@ -89,7 +106,6 @@ namespace ContactsList.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SubcategoryName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
